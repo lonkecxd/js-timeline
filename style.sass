@@ -1,0 +1,143 @@
+$light_blue: #d4ebe8
+$dark_blue: #4fbdbc
+$yellow: #F4DF38
+$orange: #f4a3a7
+
+=size($w,$h:$w)
+ width: $w
+ height: $h
+
+body
+ background-color: $light_blue 
+ +size(100%)
+
+.dialog
+ background-color: #fff
+ padding: 15px 20px 
+ border-radius: 5px
+ box-shadow: 15px 15px $dark_blue
+ width: 250px
+ position: absolute
+ transition: 0.5s
+ cursor: pointer
+ left: 40px
+ top: -10px
+ 
+
+ &:before
+  content: ""
+  display: block
+  +size(20px)
+  position: absolute
+  right: -10px
+  background-color: #fff
+  transform: rotate(45deg)
+  border-radius: 3px
+ &:hover
+  transform: translate(-10px,-10px)
+  box-shadow: 20px 20px $dark_blue
+
+.year
+ font-size: 36px
+ font-weight: 700
+ margin-bottom: 10px
+ letter-spacing: 2px
+
+ @keyframes rain_in
+  0%
+   transform: translateY(-50px)
+   opacity: 0
+  100%
+   transform: translateY(0px)
+   opacity: 1
+
+ .dec_bar
+  &,&:before,&:after
+   content: ""
+   +size(8px,30px)
+   background-color: yellow
+   border-radius: 5px
+   position: absolute
+   top: -35px
+   left: 30px
+   animation: rain_in .5s .5s both
+  &:before
+   background-color: $orange
+   top: -30px
+   left: -20px
+   animation-duration: 1s
+   animation-delay: .5s
+  &:after
+   background-color: white
+   top: -60px
+   left: 20px
+   animation-duration: 2s
+   animation-delay: .5s
+
+.timeline
+ height: 100vh
+ width: 6px
+ background-color: rgba(white,.4)
+ padding-top: 50px
+
+ .dialog_wrapper
+  position: relative
+  height: 160px
+  top: 50px
+  
+  &:before
+   content: ""
+   display: block
+   +size(20px)
+   border: solid 5px white
+   border-radius: 50%
+   left: 50%
+   transform: translateX(-40%)
+   
+  
+  &:nth-child(2n+1)
+   transition-origin: 0% 20px
+   .dialog
+    left: 40px
+    &:before
+     left: -10px
+  &:nth-child(2n)
+   transition-origin: 100% 20px
+   .dialog
+    right: 40px
+    left: initial
+
+#app
+ display: flex
+ align-items: center
+ justify-content: center
+
+button.initial
+ position: fixed
+ right: 30px
+ top: 30px
+ background-color: $dark_blue
+ border: none
+ color: white
+ border-radius: 5px
+ padding: 5px 10px
+ font-size: 16px
+ cursor: pointer
+
+.content
+ line-height: 150%
+ .date
+  font-size: 18px
+  color: $orange
+  padding-bottom: 5px
+ .tag
+  
+  &:hover
+   box-shadow: 0px 0px 2px 2px rgba($dark_blue,0.4)
+
+.fade-enter-active, .fade-leave-active
+ transition: .5s
+ transform: translateY(0px)
+.fade-enter, .fade-leave-to
+ opacity: 0
+ transform: translateY(50px) rotate(10deg)

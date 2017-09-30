@@ -1,0 +1,11 @@
+#app
+ button.initial(@click="addTag()") + 插入资料
+ transition-group.timeline(tag="ul",name="fade")
+  li.dialog_wrapper(v-for="(l,lid) in events",:key="l",:style="{'transition-delay':lid/2+'s'}")
+   .dialog
+     h3.year {{l.year}}
+      .dec_bar
+     ul.content
+      li(v-for="(c,cid) in l.content") 
+       .date {{c.month}}月
+       .tag(@click="setTag(lid,cid)") {{c.tag}}
